@@ -14,16 +14,22 @@ const taskContainer = document.getElementById("taskContainer"); // Lista de tare
 const filterPendingBtn = document.getElementById("filterPendingBtn"); // Botão para filtrar pendentes
 const showCompletedCountBtn = document.getElementById("showCompletedCountBtn"); // Botão para exibir o total de tarefas concluídas
 
+// Função para criar uma tarefa a partir de parâmetros
+function createTask(titulo, concluida = false) {
+    const newTask = {
+        id: tasks.length + 1, // Gera um ID único para a tarefa
+        titulo, // Define o título da tarefa
+        concluida // Define o status da tarefa (padrão: false)
+    };
+    return newTask;
+}
+
 // Adiciona um evento de clique ao botão para capturar o valor do input e criar uma nova tarefa
 addTaskBtn.addEventListener("click", () => {
     const titulo = taskInput.value.trim(); // Obtém o valor do input removendo espaços extras
     
     if (titulo !== "") { // Verifica se o input não está vazio
-        const newTask = { 
-            id: tasks.length + 1, // Gera um ID único para a tarefa
-            titulo, // Define o título da tarefa
-            concluida: false // Define o status como não concluído
-        };
+        const newTask = createTask(titulo); // Cria uma nova tarefa usando a função createTask
         
         tasks.push(newTask); // Adiciona a nova tarefa ao array
         renderTasks(tasks); // Atualiza a lista exibida no DOM
