@@ -11,6 +11,7 @@ console.log("Tarefas iniciais:", tasks);
 const taskInput = document.getElementById("taskInput"); // Campo de entrada de texto
 const addTaskBtn = document.getElementById("addTaskBtn"); // Botão de adicionar tarefa
 const taskContainer = document.getElementById("taskContainer"); // Lista de tarefas
+const filterPendingBtn = document.getElementById("filterPendingBtn"); // Botão para filtrar pendentes
 
 // Adiciona um evento de clique ao botão para capturar o valor do input e criar uma nova tarefa
 addTaskBtn.addEventListener("click", () => {
@@ -24,7 +25,7 @@ addTaskBtn.addEventListener("click", () => {
         };
         
         tasks.push(newTask); // Adiciona a nova tarefa ao array
-        renderTasks(); // Atualiza a lista exibida no DOM
+        renderTasks(tasks); // Atualiza a lista exibida no DOM
         taskInput.value = ""; // Limpa o campo de entrada após adicionar a tarefa
         
         alert("Tarefa adicionada com sucesso!"); // Exibe um alert informando que a tarefa foi adicionada
@@ -32,10 +33,10 @@ addTaskBtn.addEventListener("click", () => {
 });
 
 // Função para renderizar a lista de tarefas no DOM
-function renderTasks() {
+function renderTasks(taskList) {
     taskContainer.innerHTML = ""; // Limpa a lista antes de renderizar
     
-    tasks.forEach(task => {
+    taskList.forEach(task => {
         const li = document.createElement("li"); // Cria um elemento de lista
         li.textContent = task.titulo; // Define o texto como o título da tarefa
         
@@ -44,10 +45,16 @@ function renderTasks() {
         completeBtn.textContent = "Concluir";
         completeBtn.addEventListener("click", () => {
             task.concluida = true; // Marca a tarefa como concluída
-            renderTasks(); // Atualiza o DOM para refletir a mudança
+            renderTasks(tasks); // Atualiza o DOM para refletir a mudança
         });
         
         li.appendChild(completeBtn); // Adiciona o botão à tarefa na lista
         taskContainer.appendChild(li); // Adiciona a tarefa à lista no DOM
     });
 }
+
+// Adiciona um evento de clique ao botão de filtrar pendentes
+filterPendingBtn.addEventListener("click", () => {
+    const pendingTasks = tasks.filter(task => !task.concluida); // Filtra apenas as tarefas não concluídas
+    renderTasks(pendingTasks); // Renderiza apenas as tarefas pendentes
+});
