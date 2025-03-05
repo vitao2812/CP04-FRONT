@@ -12,6 +12,7 @@ const taskInput = document.getElementById("taskInput"); // Campo de entrada de t
 const addTaskBtn = document.getElementById("addTaskBtn"); // Botão de adicionar tarefa
 const taskContainer = document.getElementById("taskContainer"); // Lista de tarefas
 const filterPendingBtn = document.getElementById("filterPendingBtn"); // Botão para filtrar pendentes
+const showCompletedCountBtn = document.getElementById("showCompletedCountBtn"); // Botão para exibir o total de tarefas concluídas
 
 // Adiciona um evento de clique ao botão para capturar o valor do input e criar uma nova tarefa
 addTaskBtn.addEventListener("click", () => {
@@ -68,16 +69,18 @@ filterPendingBtn.addEventListener("click", () => {
     console.log("Tarefas com títulos em maiúsculas:", upperCaseTasks);
 });
 
-// Cria uma função para calcular o total de tarefas concluídas e exibir o resultado
-function showCompletedCount() {
+// Adiciona um evento de clique ao botão de exibir o total de tarefas concluídas
+showCompletedCountBtn.addEventListener("click", () => {
     const completedCount = tasks.reduce((count, task) => {
+        // Verifica se a tarefa está concluída e incrementa o contador
         return task.concluida ? count + 1 : count;
     }, 0);
     
-    alert(`Total de tarefas concluídas: ${completedCount}`); // Exibe o total de tarefas concluídas
-}
+    // Exibe o total de tarefas concluídas em um alert
+    alert(`Total de tarefas concluídas: ${completedCount}`);
+});
 
-// Função que usa destructuring para extrair informações de uma tarefa e exibir no alert
+// Cria uma função que usa destructuring para extrair informações de uma tarefa e exibir no alert
 function showTaskInfo(taskId) {
     const task = tasks.find(t => t.id === taskId);
     
