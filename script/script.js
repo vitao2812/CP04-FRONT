@@ -38,6 +38,16 @@ function renderTasks() {
     tasks.forEach(task => {
         const li = document.createElement("li"); // Cria um elemento de lista
         li.textContent = task.titulo; // Define o texto como o título da tarefa
+        
+        // Cria um botão "Concluir" para cada tarefa
+        const completeBtn = document.createElement("button");
+        completeBtn.textContent = "Concluir";
+        completeBtn.addEventListener("click", () => {
+            task.concluida = true; // Marca a tarefa como concluída
+            renderTasks(); // Atualiza o DOM para refletir a mudança
+        });
+        
+        li.appendChild(completeBtn); // Adiciona o botão à tarefa na lista
         taskContainer.appendChild(li); // Adiciona a tarefa à lista no DOM
     });
 }
