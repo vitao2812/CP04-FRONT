@@ -48,8 +48,18 @@ function renderTasks(taskList) {
             task.concluida = true; // Marca a tarefa como concluída
             renderTasks(tasks); // Atualiza o DOM para refletir a mudança
         });
+
+        // Cria um botão "Detalhes" para mostrar as informações da tarefa
+        const detailsBtn = document.createElement("button");
+        detailsBtn.textContent = "Detalhes";
+        detailsBtn.addEventListener("click", () => {
+            // Utiliza destructuring para extrair 'titulo' e 'concluida' da tarefa
+            const { titulo, concluida } = task;
+            alert(`Título: ${titulo}\nConcluída: ${concluida ? "Sim" : "Não"}`); // Exibe as informações em um alert
+        });
         
-        li.appendChild(completeBtn); // Adiciona o botão à tarefa na lista
+        li.appendChild(completeBtn); // Adiciona o botão "Concluir" à tarefa
+        li.appendChild(detailsBtn); // Adiciona o botão "Detalhes" à tarefa
         taskContainer.appendChild(li); // Adiciona a tarefa à lista no DOM
     });
 }
@@ -79,23 +89,3 @@ showCompletedCountBtn.addEventListener("click", () => {
     // Exibe o total de tarefas concluídas em um alert
     alert(`Total de tarefas concluídas: ${completedCount}`);
 });
-
-// Cria uma função que usa destructuring para extrair informações de uma tarefa e exibir no alert
-function showTaskInfo(taskId) {
-    const task = tasks.find(t => t.id === taskId);
-    
-    if (task) {
-        const { titulo, concluida } = task; // Desestrutura as propriedades 'titulo' e 'concluida'
-        alert(`Título: ${titulo}\nConcluída: ${concluida ? "Sim" : "Não"}`); // Exibe as informações
-    } else {
-        alert("Tarefa não encontrada!"); // Caso a tarefa não exista
-    }
-}
-
-// Cria uma função que aceita múltiplas tarefas como parâmetros REST e as adiciona ao array
-function addMultipleTasks(...newTasks) {
-    for (let task of newTasks) {
-        tasks.push(task); // Adiciona cada tarefa passada como parâmetro
-    }
-    renderTasks(tasks); // Atualiza a lista de tarefas
-}
