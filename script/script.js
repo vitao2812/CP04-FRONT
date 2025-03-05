@@ -26,6 +26,8 @@ addTaskBtn.addEventListener("click", () => {
         tasks.push(newTask); // Adiciona a nova tarefa ao array
         renderTasks(); // Atualiza a lista exibida no DOM
         taskInput.value = ""; // Limpa o campo de entrada após adicionar a tarefa
+        
+        alert("Tarefa adicionada com sucesso!"); // Exibe um alert informando que a tarefa foi adicionada
     }
 });
 
