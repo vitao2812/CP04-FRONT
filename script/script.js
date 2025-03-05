@@ -57,4 +57,42 @@ function renderTasks(taskList) {
 filterPendingBtn.addEventListener("click", () => {
     const pendingTasks = tasks.filter(task => !task.concluida); // Filtra apenas as tarefas não concluídas
     renderTasks(pendingTasks); // Renderiza apenas as tarefas pendentes
+
+    // Usa map para criar uma nova lista de tarefas com os títulos em maiúsculas
+    const upperCaseTasks = tasks.map(task => ({
+        ...task, // Usa spread para manter as outras propriedades
+        titulo: task.titulo.toUpperCase() // Converte o título para maiúsculas
+    }));
+
+    // Exibe a nova lista com os títulos em maiúsculas no console
+    console.log("Tarefas com títulos em maiúsculas:", upperCaseTasks);
 });
+
+// Cria uma função para calcular o total de tarefas concluídas e exibir o resultado
+function showCompletedCount() {
+    const completedCount = tasks.reduce((count, task) => {
+        return task.concluida ? count + 1 : count;
+    }, 0);
+    
+    alert(`Total de tarefas concluídas: ${completedCount}`); // Exibe o total de tarefas concluídas
+}
+
+// Função que usa destructuring para extrair informações de uma tarefa e exibir no alert
+function showTaskInfo(taskId) {
+    const task = tasks.find(t => t.id === taskId);
+    
+    if (task) {
+        const { titulo, concluida } = task; // Desestrutura as propriedades 'titulo' e 'concluida'
+        alert(`Título: ${titulo}\nConcluída: ${concluida ? "Sim" : "Não"}`); // Exibe as informações
+    } else {
+        alert("Tarefa não encontrada!"); // Caso a tarefa não exista
+    }
+}
+
+// Cria uma função que aceita múltiplas tarefas como parâmetros REST e as adiciona ao array
+function addMultipleTasks(...newTasks) {
+    for (let task of newTasks) {
+        tasks.push(task); // Adiciona cada tarefa passada como parâmetro
+    }
+    renderTasks(tasks); // Atualiza a lista de tarefas
+}
