@@ -1,0 +1,137 @@
+/* Estilos para o corpo da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+    padding: 20px;
+    flex-direction: column;
+}
+
+/* Estilos para o cabeçalho */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #4a90e2;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Seção de entrada de tarefas */
+.task-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#taskInput {
+    padding: 10px;
+    font-size: 1rem;
+    width: 250px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+#addTaskBtn {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#addTaskBtn:hover {
+    background-color: #357ab7;
+}
+
+/* Seção de filtros */
+.task-filters {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 8px 15px;
+    font-size: 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #357ab7;
+}
+
+/* Estilos para a lista de tarefas */
+.task-list {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#taskContainer {
+    list-style-type: none;
+    padding: 0;
+}
+
+#taskContainer li {
+    padding: 12px;
+    margin: 8px 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+
+#taskContainer li.completed {
+    background-color: #e8f9e8;
+    text-decoration: line-through;
+}
+
+#taskContainer li button {
+    padding: 8px 12px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#taskContainer li button:hover {
+    background-color: #357ab7;
+}
+
+/* Estilos específicos para tarefas concluídas */
+li.completed button {
+    background-color: #27ae60; /* Verde para tarefas concluídas */
+}
+
+li.completed button:hover {
+    background-color: #2ecc71; /* Verde mais claro */
+}
